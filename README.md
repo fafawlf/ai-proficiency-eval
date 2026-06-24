@@ -4,6 +4,12 @@
 
 A small, open, fully-local tool that reads your AI coding/work sessions (Claude Code, Cursor, Codex, …) and produces a fair, auditable "proficiency card" plus concrete feedback on how to improve. No data ever goes to a third-party server.
 
+<p align="center">
+  <img src="examples/example_stat_card.png" width="420" alt="Example proficiency stat card: an archetype, a 5-axis radar, three gauges (AI-native / ability / verify-gate), a difficulty bar, and evidence-backed strength + growth areas">
+</p>
+
+> Above: the shareable "stat card" — a **synthetic** example. What sets it apart from activity dashboards is that every number traces back to a real quote from the sessions. Here the strongest dimension, **Detection (3.4)**, is backed by _"caught a fake 'all tests pass'"_; the top growth area, **Setup-defense (2.2)**, by _"ran a migration unverified."_ There's also a longer detailed card per person (per-dimension evidence, strengths, growth, top-3 fixes).
+
 ---
 
 ## The problem
