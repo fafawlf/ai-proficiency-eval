@@ -50,29 +50,36 @@ These are the calibration that took dozens of iterations to get right. They're a
 
 ## Install & run
 
-Requires **Claude Code** (for the multi-agent scoring step), `python3`, and `node`.
+Requires **Claude Code** (the per-task scoring runs as a multi-agent Claude Code Workflow), plus `python3` and `node`.
+
+**1. Install** — clone it straight into your Claude Code skills folder:
 
 ```bash
-git clone https://github.com/fafawlf/ai-proficiency-eval.git
-cd ai-proficiency-eval
-cp config.json config.local.json   # then edit config.json for your setup
+git clone https://github.com/fafawlf/ai-proficiency-eval.git ~/.claude/skills/ai-proficiency-eval
 ```
 
-Edit `config.json`:
-- `sources`: globs pointing at your session logs, each tagged with a `person` and `tool`.
-- `canon`: merge one person's multiple machines/accounts into one identity.
-- `people`: display names/roles.
+**2. Point it at your sessions** — edit `config.json`:
+- `sources` — globs for your session logs (default `~/.claude/projects/*/*.jsonl`), each tagged with a `person` and `tool`. **This is the "reads all your sessions" step: it ingests every session matching the glob — entirely on your machine, nothing uploaded.**
+- `canon` — merge one person's multiple machines/accounts into a single identity.
+- `people` — display names / roles.
 
-Then run the pipeline (also usable as a Claude Code skill — drop the folder in `~/.claude/skills/` and the agent runs it for you; see `SKILL.md`):
+**3. Run it — easiest way: just ask Claude.** Since it's now a skill, in Claude Code say:
+
+> "Evaluate my AI proficiency with the ai-proficiency-eval skill."
+
+Claude runs the whole pipeline for you — compaction, the multi-agent scoring Workflow, and rendering — and writes the cards to `cards/`.
+
+**Or run the scripts yourself:**
 
 ```bash
-python3 scripts/compact_sessions.py          # 1. compact + auto count/difficulty/throughput
-# 2. score: run scripts/score_workflow.mjs via Claude Code's Workflow
-python3 scripts/render_cards.py              # 3a. detailed card
-python3 scripts/render_stat_card.py          # 3b. shareable stat card
+python3 scripts/compact_sessions.py      # 1. read your sessions → clean traces + auto count/difficulty/throughput
+# 2. score each task — run scripts/score_workflow.mjs as a Claude Code Workflow.
+#    (This is the step that needs Claude Code; the "just ask Claude" path above does it for you.)
+python3 scripts/render_cards.py          # 3a. detailed card        → cards/<person>.html
+python3 scripts/render_stat_card.py      # 3b. shareable stat card  → cards/<person>_stat.html
 ```
 
-Full method and the per-dimension anchors are in [`reference/rubric.md`](reference/rubric.md); the pipeline is in [`SKILL.md`](SKILL.md).
+Full method and per-dimension anchors: [`reference/rubric.md`](reference/rubric.md). Pipeline detail: [`SKILL.md`](SKILL.md).
 
 ## Limitations (please read)
 
