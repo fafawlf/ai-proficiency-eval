@@ -1,0 +1,13 @@
+{
+  "compact_dir": "/tmp/aiprof_compact",
+  "sources": [
+    { "tool": "claude-code", "glob": "~/.claude/projects/*/*.jsonl", "person": "me" }
+  ],
+  "canon": {},
+  "out_dir": "./cards",
+  "workflow_outputs": [],
+  "brand": "verity.",
+  "people": {
+    "me": { "name": "Your Name", "role": "Engineer" }
+  }
+}

@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+node_modules/
+# generated outputs (the configured out_dir)
+/cards/
+# your local config / data
+config.local.json
+.DS_Store
